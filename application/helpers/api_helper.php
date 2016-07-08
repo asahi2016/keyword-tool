@@ -7,7 +7,7 @@
  */
 
     // Perform API call
-    function call($method, $url, $data = false)
+    function callAPI($method, $url, $data = false)
     {
         $curl = curl_init();
 
