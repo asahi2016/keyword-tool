@@ -6,10 +6,8 @@
  * Time: 4:11 PM
  */
 
-class ProcessAPI {
-
     // Perform API call
-    function CallAPI($method, $url, $data = false)
+    function call($method, $url, $data = false)
     {
         $curl = curl_init();
 
@@ -42,5 +40,3 @@ class ProcessAPI {
 
         return $result;
     }
-
-} 
