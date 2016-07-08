@@ -34,7 +34,7 @@
 			<li><a href="javascript:;" rel="bing">Bing</a></li>
 		</ul>
 		<div class="form-action search-form" id="google">
-			<form>
+			<form action="keywords/google" method="get">
 				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
@@ -64,7 +64,7 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="youtube">
-			<form>
+			<form action="keywords/youtube" method="get">
 				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
@@ -94,7 +94,7 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="bing">
-			<form>
+			<form action="keywords/bing" method="get">
 				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
