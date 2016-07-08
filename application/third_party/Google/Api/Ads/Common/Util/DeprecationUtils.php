@@ -26,7 +26,7 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-require_once 'Google/Api/Ads/Common/Util/Logger.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/Logger.php';
 
 /**
  * A collection of utility methods for logging or throwing errors related to the

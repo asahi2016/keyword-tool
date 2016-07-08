@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+$config['base_url'] = 'http://localhost/keyword-tool/public/';
 
 /*
 |--------------------------------------------------------------------------
@@ -512,3 +512,14 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/**
+ * Google Adwords API Client ID, Secret and Refresh Tokens
+ */
+
+$config['client_id'] = '93215343167-65iqrf9kv8ev7epup6855uragpcv5o10.apps.googleusercontent.com';
+$config['client_secret'] = 'RjtNFpf39cuniBJ5bEWEdkIF';
+$config['refresh_token'] = '1/y8K-GOR_iaiUZGBqP0UhUT86fBAVZpNj-qxoxvJoqVQ';
+$config['developer_token'] = 'Cm6HKYVm7uZ-hlqOF0RnMA';
+$config['company_name'] = 'Asahi Technologies';
+$config['customer_id'] = '131-752-3145';

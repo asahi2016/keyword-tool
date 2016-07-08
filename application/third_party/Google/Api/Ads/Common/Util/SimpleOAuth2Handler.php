@@ -25,8 +25,8 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-require_once 'Google/Api/Ads/Common/Util/OAuth2Handler.php';
-require_once 'Google/Api/Ads/Common/Util/CurlUtils.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/OAuth2Handler.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/CurlUtils.php';
 
 /**
  * A simple OAuth 2.0 handler.

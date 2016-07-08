@@ -8,15 +8,33 @@
  */
 class Keywords extends CI_Controller
 {
-
+    protected $CI;
     public function __construct(){
-        
+        parent::__construct();
+        $this->CI = &get_instance();
     }
 
     //Get Google Keywords
     public function google(){
+        $this->load->library('google');
         $this->load->helper('api');
-        echo "Google";
+//OAuth Info
+
+        $oauth['client_id'] = $this->config->item('client_id');
+        $oauth['client_secret'] = $this->config->item('client_secret');
+        $oauth['refresh_token'] = $this->config->item('refresh_token');
+        $user = new AdWordsUser(null,'Cm6HKYVm7uZ-hlqOF0RnMA','Asahi Technologies','131-752-3145',APPPATH.'settings.ini',$oauth);
+// Generate callback URL
+/*        $callbackUrl = "http://localhost/keyword-test/";
+        $authUrl = $user->GetOAuth2AuthorizationUrl($callbackUrl, true);*/
+
+        if(!empty($_GET['keyword'])){
+            $keyword = $_GET['keyword'];
+            $result = GetKeywordIdeas($user,$keyword);
+        }else {
+            echo "Keyword cannot be empty. Please enter a keyword to search";
+        }
+        $this->load->view('google/index',array('data' => $result));
     }
 
     //Get Youtueb Keywords
@@ -29,5 +47,11 @@ class Keywords extends CI_Controller
     public function bing(){
         $this->load->helper('api');
         echo "Bing";
+    }
+
+    public function print_pre($data){
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
     }
 }

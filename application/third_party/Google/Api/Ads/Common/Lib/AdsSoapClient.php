@@ -27,12 +27,12 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
-require_once 'Google/Api/Ads/Common/Util/Logger.php';
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
-require_once 'Google/Api/Ads/Common/Util/SoapRequestXmlFixer.php';
-require_once 'Google/Api/Ads/Common/Util/XmlUtils.php';
-require_once 'Google/Api/Ads/Common/Util/DeprecationUtils.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Lib/AdsUser.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/Logger.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/MapUtils.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/SoapRequestXmlFixer.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/XmlUtils.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/DeprecationUtils.php';
 
 /**
  * An extension of the {@link SoapClient} class intended to prepare

@@ -25,11 +25,11 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-require_once 'Google/Api/Ads/Common/Util/AdsUtilityRegistry.php';
-require_once 'Google/Api/Ads/Common/Util/Logger.php';
-require_once 'Google/Api/Ads/Common/Util/SimpleOAuth2Handler.php';
-require_once 'Google/Api/Ads/Common/Lib/SoapClientFactory.php';
-require_once 'Google/Api/Ads/Common/Lib/ValidationException.php';
+require_once APPPATH.'third_party\Google\Api\Ads\Common\Util\AdsUtilityRegistry.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/Logger.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/SimpleOAuth2Handler.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Lib/SoapClientFactory.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Lib/ValidationException.php';
 
 /**
  * User class for all API modules using the Ads API.
@@ -191,8 +191,8 @@ abstract class AdsUser {
     // Set no time limit for PHP operations.
     set_time_limit(0);
     ini_set('default_socket_timeout', 480);
-
-    $settingsIni = parse_ini_file($settingsIniPath, true);
+    $settingsIniPaths = APPPATH.'settings.ini';
+    $settingsIni = parse_ini_file($settingsIniPaths, true);
 
     // Logging settings.
     $pathRelative = $this->GetSetting($settingsIni, 'LOGGING',

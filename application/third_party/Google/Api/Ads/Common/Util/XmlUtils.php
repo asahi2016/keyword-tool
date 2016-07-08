@@ -25,7 +25,7 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
+require_once APPPATH.'third_party/Google/Api/Ads/Common/Util/MapUtils.php';
 
 /**
  * A collection of utility methods for working with XML.
