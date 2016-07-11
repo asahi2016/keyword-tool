@@ -34,7 +34,7 @@
             <li><a href="javascript:;" rel="bing">Bing</a></li>
         </ul>
         <div class="form-action search-form" id="google">
-            <form action="keywords/google" method="get">
+            <form action="<?php echo base_url(); ?>keywords/google" method="get">
                 <input type="text" class="search-box" name="keyword" value="" placeholder="Type a keyword and press enter"/>
                 <a class="btn btn-primary btn-select btn-select-light">
                     <input type="hidden" class="btn-select-input" id="" name="" value="" />
