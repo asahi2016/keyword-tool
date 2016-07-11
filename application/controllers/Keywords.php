@@ -32,9 +32,12 @@ class Keywords extends CI_Controller
             $keyword = $_GET['keyword'];
             $result = GetKeywordIdeas($user,$keyword);
         }else {
-            echo "Keyword cannot be empty. Please enter a keyword to search";
+            $data['error'] =  "<p>Keyword cannot be empty. Please enter a keyword to search</p>";
+            $this->load->view('index/index',$data);
         }
-        $this->load->view('google/index',array('data' => $result));
+        if(isset($result)){
+            $this->load->view('google/index',array('data' => $result));
+        }
     }
 
     //Get Youtueb Keywords

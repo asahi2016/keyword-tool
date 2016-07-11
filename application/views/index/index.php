@@ -28,13 +28,21 @@
 	<section class="form-section">
 		<h1>Keyword Tool</h1>
 		<h2>Get 750+ Google Keyword Suggestions for free</h2>
+		<?php
+			if(!empty($error)){
+				echo '<div class="alert alert-danger">
+				  '.$error.' 
+				</div>';
+			}
+		?>
+
 		<ul class="social-link">
 			<li><a href="javascript:;" rel="google">Google</a></li>
 			<li><a href="javascript:;" rel="youtube">Youtube</a></li>
 			<li><a href="javascript:;" rel="bing">Bing</a></li>
 		</ul>
 		<div class="form-action search-form" id="google">
-			<form action="keywords/google" method="get">
+			<form action="<?php echo base_url(); ?>keywords/google" method="get">
 				<input type="text" class="search-box" value="" name="keyword" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
