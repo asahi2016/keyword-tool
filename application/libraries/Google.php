@@ -9,7 +9,7 @@
 class Google
 {
     public function __construct(){
-        require_once APPPATH. 'third_party\Google\Api\Ads\AdWords\Lib\AdWordsUser.php';
+        require_once APPPATH. 'third_party/Google/Api/Ads/AdWords/Lib/AdWordsUser.php';
         require_once APPPATH. "third_party/Google/Api/Ads/AdWords/v201605/TargetingIdeaService.php";
     }
 
