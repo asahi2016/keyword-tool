@@ -28,8 +28,8 @@ class Keywords extends CI_Controller
 /*        $callbackUrl = "http://localhost/keyword-test/";
         $authUrl = $user->GetOAuth2AuthorizationUrl($callbackUrl, true);*/
 
-        if(!empty($_GET['keyword'])){
-            $keyword = trim($_GET['keyword']);
+        if(!empty(trim($_GET['keyword']))){
+            $keyword = $_GET['keyword'];
             $this->session->set_userdata('keyword',$keyword);
             $result = GetKeywordIdeas($user,$keyword);
         }else {
