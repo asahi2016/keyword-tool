@@ -30,6 +30,7 @@ class Keywords extends CI_Controller
 
         if(!empty($_GET['keyword'])){
             $keyword = $_GET['keyword'];
+            $this->session->set_userdata('keyword',$keyword);
             $result = GetKeywordIdeas($user,$keyword);
         }else {
             $data['error'] =  "<p>Keyword cannot be empty. Please enter a keyword to search</p>";
