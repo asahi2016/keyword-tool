@@ -5,16 +5,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8" />
 	<title>Keyword Tool</title>
-	<link rel="stylesheet" type="text/css" href="../css/global.css" />
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="../css/selectbox.css" />
-	<link rel="stylesheet" type="text/css" href="../css/font-awesome.css" />
-	<script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../js/html5shiv.js"></script>
-	<script type="text/javascript" src="../js/respond.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/selectbox.js"></script>
-	<script type="text/javascript" src="../js/custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/global.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/selectbox.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/font-awesome.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/html5shiv.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/respond.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/selectbox.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/custom.js"></script>
 </head>
 <body>
 <section class="wrap">
@@ -44,8 +44,6 @@
 		<div class="form-action search-form" id="google">
 			<form action="<?php echo base_url(); ?>keywords/google" method="get">
 				<input type="text" class="search-box" value="" name="keyword" placeholder="Type a keyword and press enter"/>
-			<form action="google" method="get">
-				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
 					<span class="btn-select-value">Select an Item</span>

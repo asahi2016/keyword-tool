@@ -312,4 +312,14 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+function print_pre($array , $exit = 0){
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
+
+    if($exit)
+        exit;
+}
+
+
 require_once BASEPATH.'core/CodeIgniter.php';

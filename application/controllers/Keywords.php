@@ -8,11 +8,10 @@
  */
 class Keywords extends CI_Controller
 {
-    /*public function index()
+    public function index()
     {
-
-        //$this->load->view('index/index');
-    }*/
+        $this->load->view('index/index');
+    }
 
     //Get Google Keywords
     public function google()
@@ -52,51 +51,55 @@ class Keywords extends CI_Controller
     //Get Bing Keywords
     public function bing()
     {
-        //$this->load->view('bing/index');
 
+        $this->load->helper('api');
+
+        //Generate the suggested keywords
         if(isset($_GET['bing-keyword']) && !empty($_GET['bing-keyword'])) {
 
             $result = array();
-            $this->load->helper('api');
 
             $letters = range('a', 'z');
             $numbers = range('0', '9');
 
+            //merge the letters and numbers
             $suggestions = array_merge($letters, $numbers);
 
             $search_results = array();
             foreach ($suggestions as $key => $val) {
 
+                //Adding the suggestions(letters and numbers) before and after the keyword
                 $keys = array('front' => $_GET['bing-keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['bing-keyword']);
 
                 foreach ($keys as $k => $search) {
-
+                    //pass the keyword to api call
                     $response = $this->getApiResponse($search);
                     foreach ($response as $order => $res_search) {
-                        array_push($search_results, $res_search);
+                        array_push($search_results, $res_search); //pushing the multiple array into one
                     }
                 }
             }
 
+            //Remove the duplicate values in the keywords
             $result['bing']['result'] = array_values(array_unique($search_results));
-
-            //print_pre($result['bing']['result'],1);
-
+        }
+            if(isset($result) && !empty($result)){
             $this->load->view('bing/index', $result);
         }
         else{
-
-            $this->load->view('bing/index');
+            $this->load->view('index/index');
         }
     }
 
     public function getApiResponse($keyword){
+
         $keyword = urlencode($keyword);
 
-        $front_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt=en-in';
+        $front_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt=en-in';//API url
 
         $method = 'POST';
 
+        //API call to get the keywords
         $response = callAPI($method, $front_url, true);
 
         $response = json_decode($response);
