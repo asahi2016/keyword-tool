@@ -5,16 +5,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8" />
 	<title>Keyword Tool</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/global.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/selectbox.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="../css/global.css" />
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/selectbox.css" />
+	<link rel="stylesheet" type="text/css" href="../css/font-awesome.css" />
 	<script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/html5shiv.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/respond.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/selectbox.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/custom.js"></script>
+	<script type="text/javascript" src="../js/html5shiv.js"></script>
+	<script type="text/javascript" src="../js/respond.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/selectbox.js"></script>
+	<script type="text/javascript" src="../js/custom.js"></script>
 </head>
 <body>
 <section class="wrap">
@@ -44,6 +44,8 @@
 		<div class="form-action search-form" id="google">
 			<form action="<?php echo base_url(); ?>keywords/google" method="get">
 				<input type="text" class="search-box" value="" name="keyword" placeholder="Type a keyword and press enter"/>
+			<form action="google" method="get">
+				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
 					<span class="btn-select-value">Select an Item</span>
@@ -72,7 +74,7 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="youtube">
-			<form action="youtube/keywords" method="get">
+			<form action="keywords/youtube" method="get">
 				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
@@ -102,8 +104,8 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="bing">
-			<form>
-				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
+            <form action="<?php echo base_url(); ?>keywords/bing" method="get">
+				<input type="text" class="search-box" name="bing-keyword" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
 					<span class="btn-select-value">Select an Item</span>
@@ -222,7 +224,8 @@
 			<div class="col-xs-9 col-md-9">
 				<div class="keyword-result">
 					<h3>Keyword suggestion</h3>
-					<table cellpadding="0" cellspacing="0" class="tbl_result">
+
+					<table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="google-tbl">
 						<tr>
 							<td width="40"><input type="checkbox" name="" ></td>
 							<td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
@@ -230,15 +233,40 @@
 							<td width="130">CPC <i class="fa fa-question" aria-hidden="true"></i></td>
 							<td width="220">AdWords Competition <i class="fa fa-question" aria-hidden="true"></i></td>
 						</tr>
-						<tr>
-						<!--	<td width="40"><input type="checkbox" name="" ></td>
-							<td width="290">test tube news</td>
-							<td width="150">Search Volume</td>
-							<td width="130">CPC </td>
-							<td width="220">AdWords Competition</td>-->
-						</tr>
+                        <tr>
+                            <td width="40">Google</td>
+                        </tr>
 
 					</table>
+                    <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="youtube-tbl">
+                        <tr>
+                            <td width="40"><input type="checkbox" name="" ></td>
+                            <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
+                            <td width="150">Search Volume <i class="fa fa-question" aria-hidden="true"></i></td>
+                            <td width="130">CPC <i class="fa fa-question" aria-hidden="true"></i></td>
+                            <td width="220">AdWords Competition <i class="fa fa-question" aria-hidden="true"></i></td>
+                        </tr>
+                        <tr>
+                            <td width="40">youtube</td>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="bing-tbl">
+                        <tr>
+                            <td width="40"><input type="checkbox" name="" ></td>
+                            <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
+                        </tr>
+                        <?php
+
+                        if(isset($bing) && !empty($bing)){
+                            foreach($bing['result'] as $k => $val) { ?>
+                                <tr>
+                                    <td width="40"><input type="checkbox" name="" ></td>
+                                    <td width="290"><?php echo $val; ?></td>
+
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </table>
 				</div>
 			</div>
 		</div>
