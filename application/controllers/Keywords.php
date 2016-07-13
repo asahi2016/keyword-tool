@@ -69,7 +69,7 @@ class Keywords extends CI_Controller
             foreach ($suggestions as $key => $val) {
 
                 //Adding the suggestions(letters and numbers) before and after the keyword
-                $keys = array('front' => $_GET['bing-keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['bing-keyword']);
+                $keys = array('normal' => $_GET['bing-keyword'], 'front' => $_GET['bing-keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['bing-keyword']);
 
                 foreach ($keys as $k => $search) {
                     //pass the keyword to api call
@@ -95,12 +95,12 @@ class Keywords extends CI_Controller
 
         $keyword = urlencode($keyword);
 
-        $front_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt=en-in';//API url
+        $api_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt=en-in';//API url
 
         $method = 'POST';
 
         //API call to get the keywords
-        $response = callAPI($method, $front_url, true);
+        $response = callAPI($method, $api_url, true);
 
         $response = json_decode($response);
 

@@ -29,9 +29,9 @@
         <h1>Keyword Tool</h1>
         <h2>Get 750+ Google Keyword Suggestions for free</h2>
         <ul class="social-link">
-            <li><a href="javascript:;" rel="google">Google</a></li>
-            <li><a href="javascript:;" rel="youtube">Youtube</a></li>
-            <li><a href="javascript:;" rel="bing">Bing</a></li>
+            <li><a href="#google" class="google">Google</a></li>
+            <li><a href="#youtube" class="youtube">Youtube</a></li>
+            <li><a href="#bing" class="bing">Bing</a></li>
         </ul>
         <div class="form-action search-form" id="google">
             <form action="google" method="get">
@@ -95,7 +95,7 @@
         </div>
         <div class="form-action search-form" id="bing">
             <form action="<?php echo base_url(); ?>keywords/bing" method="get">
-                <input type="text" class="search-box" name="bing-keyword" value="" placeholder="Type a keyword and press enter"/>
+                <input type="text" class="search-box" name="bing-keyword" value="<?php echo $_GET['bing-keyword']; ?>" placeholder="Type a keyword and press enter"/>
                 <a class="btn btn-primary btn-select btn-select-light">
                     <input type="hidden" class="btn-select-input" id="" name="" value="" />
                     <span class="btn-select-value">Select an Item</span>
@@ -215,39 +215,12 @@
                 <div class="keyword-result">
                     <h3>Keyword suggestion</h3>
 
-                    <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="google-tbl">
-                        <tr>
-                            <td width="40"><input type="checkbox" name="" ></td>
-                            <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
-                            <td width="150">Search Volume <i class="fa fa-question" aria-hidden="true"></i></td>
-                            <td width="130">CPC <i class="fa fa-question" aria-hidden="true"></i></td>
-                            <td width="220">AdWords Competition <i class="fa fa-question" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td width="40">Google</td>
-                        </tr>
-
-                    </table>
-                    <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="youtube-tbl">
-                        <tr>
-                            <td width="40"><input type="checkbox" name="" ></td>
-                            <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
-                            <td width="150">Search Volume <i class="fa fa-question" aria-hidden="true"></i></td>
-                            <td width="130">CPC <i class="fa fa-question" aria-hidden="true"></i></td>
-                            <td width="220">AdWords Competition <i class="fa fa-question" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td width="40">youtube</td>
-                        </tr>
-                    </table>
                     <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="bing-tbl">
                         <tr>
                             <td width="40"><input type="checkbox" name="" ></td>
                             <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
                         </tr>
                         <?php
-
-                        if(isset($bing) && !empty($bing)){
                                  foreach($bing['result'] as $k => $val) { ?>
                                      <tr>
                                         <td width="40"><input type="checkbox" name="" ></td>
@@ -255,7 +228,7 @@
 
                                     </tr>
                                 <?php } ?>
-                                <?php } ?>
+
                     </table>
                 </div>
             </div>

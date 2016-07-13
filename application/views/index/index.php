@@ -37,9 +37,9 @@
 		?>
 
 		<ul class="social-link">
-			<li><a href="javascript:;" rel="google">Google</a></li>
-			<li><a href="javascript:;" rel="youtube">Youtube</a></li>
-			<li><a href="javascript:;" rel="bing">Bing</a></li>
+			<li><a href="#google" class="google">Google</a></li>
+			<li><a href="#youtube" class="youtube">Youtube</a></li>
+			<li><a href="#bing" class="bing">Bing</a></li>
 		</ul>
 		<div class="form-action search-form" id="google">
 			<form action="<?php echo base_url(); ?>keywords/google" method="get">
@@ -102,7 +102,7 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="bing">
-            <form action="<?php echo base_url(); ?>keywords/bing" method="get">
+            <form action="<?php echo base_url(); ?>keywords/bing/#bing" method="get">
 				<input type="text" class="search-box" name="bing-keyword" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
