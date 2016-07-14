@@ -90,7 +90,7 @@ class Keywords extends CI_Controller
             $this->load->view('bing/index', $result);
         }
         else{
-            $this->load->view('index/index');
+            $this->load->view('bing/index');
         }
     }
 
