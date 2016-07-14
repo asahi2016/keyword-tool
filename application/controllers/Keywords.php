@@ -8,14 +8,16 @@
  */
 class Keywords extends CI_Controller
 {
-    public function index()
-    {
-        $this->load->view('bing/index');
+    protected $CI;
+    public function __construct(){
+        parent::__construct();
+        $this->CI = &get_instance();
     }
 
     //Get Google Keywords
     public function google()
     {
+        $this->load->library('google');
         $this->load->helper('api');
         //OAuth Info
 
