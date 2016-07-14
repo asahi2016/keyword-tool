@@ -10,7 +10,7 @@ class Keywords extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('index/index');
+        $this->load->view('bing/index');
     }
 
     //Get Google Keywords
@@ -52,10 +52,11 @@ class Keywords extends CI_Controller
     public function bing()
     {
 
+
         $this->load->helper('api');
 
         //Generate the suggested keywords
-        if(isset($_GET['bing-keyword']) && !empty($_GET['bing-keyword'])) {
+        if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
             $result = array();
 
@@ -69,7 +70,7 @@ class Keywords extends CI_Controller
             foreach ($suggestions as $key => $val) {
 
                 //Adding the suggestions(letters and numbers) before and after the keyword
-                $keys = array('normal' => $_GET['bing-keyword'], 'front' => $_GET['bing-keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['bing-keyword']);
+                $keys = array('normal' => $_GET['keyword'], 'front' => $_GET['keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['keyword']);
 
                 foreach ($keys as $k => $search) {
                     //pass the keyword to api call

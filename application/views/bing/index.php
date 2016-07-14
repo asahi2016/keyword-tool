@@ -28,10 +28,19 @@
     <section class="form-section">
         <h1>Keyword Tool</h1>
         <h2>Get 750+ Google Keyword Suggestions for free</h2>
+        <?php
+           $provider = getProvider();
+           $rel = array('google'=> 'Google', 'youtube'=>'Youtube', 'bing' => 'Bing');
+        ?>
         <ul class="social-link">
-            <li><a href="#google" class="google">Google</a></li>
-            <li><a href="#youtube" class="youtube">Youtube</a></li>
-            <li><a href="#bing" class="bing">Bing</a></li>
+            <?php foreach($rel as $k => $name){
+                $class = '';
+                if($k == $provider){
+                    $class = 'active';
+                }
+                ?>
+              <li><a href="<?php echo base_url();?>keywords/<?=$k;?>?keyword=<?=urlencode($_GET['keyword']);?>" class="<?=$k;?> <?=$class;?>" ><?=$name;?></a></li>
+            <?php } ?>
         </ul>
         <div class="form-action search-form" id="google">
             <form action="google" method="get">
@@ -94,8 +103,8 @@
             </form>
         </div>
         <div class="form-action search-form" id="bing">
-            <form action="<?php echo base_url(); ?>keywords/bing" method="get">
-                <input type="text" class="search-box" name="bing-keyword" value="<?php echo $_GET['bing-keyword']; ?>" placeholder="Type a keyword and press enter"/>
+            <form action="<?php echo base_url(); ?>keywords/bing/#bing" method="get">
+                <input type="text" class="search-box" name="keyword" value="<?php echo $_GET['keyword']; ?>" placeholder="Type a keyword and press enter"/>
                 <a class="btn btn-primary btn-select btn-select-light">
                     <input type="hidden" class="btn-select-input" id="" name="" value="" />
                     <span class="btn-select-value">Select an Item</span>

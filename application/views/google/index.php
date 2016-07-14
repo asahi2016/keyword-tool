@@ -31,10 +31,19 @@ $CI = &get_instance();
     <section class="form-section">
         <h1>Keyword Tool</h1>
         <h2>Get 750+ Google Keyword Suggestions for free</h2>
+        <?php
+        $provider = getProvider();
+        $rel = array('google'=> 'Google', 'youtube'=>'Youtube', 'bing' => 'Bing');
+        ?>
         <ul class="social-link">
-            <li><a href="javascript:;" rel="google">Google</a></li>
-            <li><a href="javascript:;" rel="youtube">Youtube</a></li>
-            <li><a href="javascript:;" rel="bing">Bing</a></li>
+            <?php foreach($rel as $k => $name){
+                $class = '';
+                if($k == $provider){
+                    $class = 'active';
+                }
+                ?>
+                <li><a href="<?php echo base_url();?>keywords/<?=$k;?>?keyword=<?=urlencode($_GET['keyword']);?>" class="<?=$k;?> <?=$class;?>" ><?=$name;?></a></li>
+            <?php } ?>
         </ul>
         <div class="form-action search-form" id="google">
             <form action="<?php echo base_url(); ?>keywords/google" method="get">

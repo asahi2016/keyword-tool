@@ -119,3 +119,8 @@ function GetKeywordIdeas(AdWordsUser $user,$key) {
     }
     return $result_array;
 }
+
+function getProvider(){
+    $CI =& get_instance();
+    return $CI->uri->segment(2);
+}
