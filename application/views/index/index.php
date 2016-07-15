@@ -102,7 +102,7 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="bing">
-            <form action="<?php echo base_url(); ?>keywords/bing" method="get">
+            <form action="<?php echo base_url(); ?>keywords/bing/#bing" method="get">
 				<input type="text" class="search-box" name="keyword" value="<?php if(isset($_GET['submit'])){echo $_GET['keyword']; }?>" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
