@@ -35,12 +35,12 @@
 				</div>';
 			}
 		?>
+        <ul class="social-link">
+            <li><a href="#google" class="google">Google</a></li>
+            <li><a href="#youtube" class="youtube">Youtube</a></li>
+            <li><a href="#bing" class="bing">Bing</a></li>
+        </ul>
 
-		<ul class="social-link">
-			<li><a href="#google" class="google">Google</a></li>
-			<li><a href="#youtube" class="youtube">Youtube</a></li>
-			<li><a href="#bing" class="bing">Bing</a></li>
-		</ul>
 		<div class="form-action search-form" id="google">
 			<form action="<?php echo base_url(); ?>keywords/google" method="get">
 				<input type="text" class="search-box" value="" name="keyword" placeholder="Type a keyword and press enter"/>
@@ -72,7 +72,7 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="youtube">
-			<form action="keywords/youtube" method="get">
+			<form action="<?php echo base_url(); ?>keywords/youtube" method="get">
 				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
@@ -102,7 +102,7 @@
 			</form>
 		</div>
 		<div class="form-action search-form" id="bing">
-            <form action="<?php echo base_url(); ?>keywords/bing/#bing" method="get">
+            <form action="<?php echo base_url(); ?>keywords/bing" method="get">
 				<input type="text" class="search-box" name="keyword" value="<?php if(isset($_GET['submit'])){echo $_GET['keyword']; }?>" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
@@ -254,16 +254,16 @@
                             <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
                         </tr>
                         <?php
-
+/*
                         if(isset($bing) && !empty($bing)){
-                            foreach($bing['result'] as $k => $val) { ?>
+                            foreach($bing['result'] as $k => $val) { */?><!--
                                 <tr>
                                     <td width="40"><input type="checkbox" name="" ></td>
-                                    <td width="290"><?php echo $val; ?></td>
+                                    <td width="290"><?php /*echo $val; */?></td>
 
                                 </tr>
-                            <?php } ?>
-                        <?php } ?>
+                            <?php /*} */?>
+                        --><?php /*} */?>
                     </table>
 				</div>
 			</div>

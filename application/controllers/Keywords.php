@@ -54,11 +54,11 @@ class Keywords extends CI_Controller
     public function bing()
     {
 
-
         $this->load->helper('api');
 
         //Generate the suggested keywords
         if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
+
 
             $result = array();
 
@@ -85,12 +85,15 @@ class Keywords extends CI_Controller
 
             //Remove the duplicate values in the keywords
             $result['bing']['result'] = array_values(array_unique($search_results));
+        }else {
+            $data['error'] =  "<p>Keyword cannot be empty. Please enter a bing keyword to search</p>";
+            $this->load->view('index/index',$data);
         }
             if(isset($result) && !empty($result)){
             $this->load->view('bing/index', $result);
         }
         else{
-            $this->load->view('bing/index');
+            $this->load->view('index/index');
         }
     }
 

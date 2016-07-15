@@ -121,6 +121,12 @@ function GetKeywordIdeas(AdWordsUser $user,$key) {
 }
 
 function getProvider(){
-    $CI =& get_instance();
-    return $CI->uri->segment(2);
+
+        $CI =& get_instance();
+        $uri =  $CI->uri->segment(2);
+
+        if(!$uri)
+            $uri = 'google';
+
+        return $uri;
 }

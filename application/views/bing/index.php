@@ -39,7 +39,7 @@
                     $class = 'active';
                 }
                 ?>
-              <li><a href="<?php echo base_url();?>keywords/<?=$k;?>?keyword=<?=urlencode($_GET['keyword']);?>" class="<?=$k;?> <?=$class;?>" ><?=$name;?></a></li>
+                <li><a href="<?php echo base_url();?>keywords/<?=$k;?>?keyword=<?=urlencode($_GET['keyword']);?><?php echo '#'.$k; ?>" class="<?=$k?> <?=$class?> "><?=$name;?></a></li>
             <?php } ?>
         </ul>
         <div class="form-action search-form" id="google">

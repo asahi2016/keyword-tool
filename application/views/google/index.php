@@ -42,11 +42,11 @@ $CI = &get_instance();
                     $class = 'active';
                 }
                 ?>
-                <li><a href="<?php echo base_url();?>keywords/<?=$k;?>?keyword=<?=urlencode($_GET['keyword']);?>" class="<?=$k;?> <?=$class;?>" ><?=$name;?></a></li>
+                <li><a href="<?php echo base_url();?>keywords/<?=$k;?>?keyword=<?=urlencode($_GET['keyword']);?><?php echo '#'.$k; ?>" class="<?=$k?> <?=$class?> "><?=$name;?></a></li>
             <?php } ?>
         </ul>
         <div class="form-action search-form" id="google">
-            <form action="<?php echo base_url(); ?>keywords/google" method="get">
+            <form action="<?php echo base_url(); ?>keywords/google/" method="get">
                 <input type="text" class="search-box" name="keyword" value="<?php  if(!empty($CI->session->userdata('keyword'))){echo $CI->session->userdata('keyword');} ?>" placeholder="Type a keyword and press enter"/>
                 <a class="btn btn-primary btn-select btn-select-light">
                     <input type="hidden" class="btn-select-input" id="" name="" value="" />
@@ -106,7 +106,7 @@ $CI = &get_instance();
             </form>
         </div>
         <div class="form-action search-form" id="bing">
-            <form action="keywords/bing" method="get">
+            <form action="<?php echo base_url(); ?>keywords/bing/#bing" method="get">
                 <input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
                 <a class="btn btn-primary btn-select btn-select-light">
                     <input type="hidden" class="btn-select-input" id="" name="" value="" />
