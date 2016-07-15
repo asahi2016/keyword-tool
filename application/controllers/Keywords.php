@@ -92,9 +92,6 @@ class Keywords extends CI_Controller
             if(isset($result) && !empty($result)){
             $this->load->view('bing/index', $result);
         }
-        else{
-            $this->load->view('index/index');
-        }
     }
 
     public function getApiResponse($keyword){
