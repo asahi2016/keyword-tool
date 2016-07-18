@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <?php
 $CI = &get_instance();
 ?>
@@ -38,33 +39,23 @@ $CI = &get_instance();
 				</div>';
 			}
 		?>
-        <?php
-        $provider = getProvider();
-        $rel = array('google'=> 'Google', 'youtube'=>'Youtube', 'bing' => 'Bing');
-        ?>
         <ul class="social-link">
-            <?php foreach($rel as $k => $name){
-                $class = '';
-                if($k == $provider){
-                    $class = 'active';
-                }
-                ?>
-                <li><a href="<?php echo base_url();?>keywords/<?=$k;?>?keyword=<?=urlencode($_GET['keyword']);?><?php echo '&domain='.$_GET['domain']; ?><?php echo '&language='.$_GET['language']; ?><?php echo '#'.$k; ?>" class="<?=$k?> <?=$class?> "><?=$name;?></a></li>
-            <?php } ?>
+            <li><a href="#google" class="google">Google</a></li>
+            <li><a href="#youtube" class="youtube">Youtube</a></li>
+            <li><a href="#bing" class="bing">Bing</a></li>
         </ul>
 
 		<div class="form-action search-form" id="google">
 			<form action="<?php echo base_url(); ?>keywords/google" method="get">
-				<input type="text" class="search-box" value="<?php  if(!empty($CI->session->userdata('keyword'))){echo $CI->session->userdata('keyword');} ?>" name="keyword" placeholder="Type a keyword and press enter"/>
+				<input type="text" class="search-box" value="" name="keyword" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
-                    <select id="edit-domain" class="form-select form-control required select2-hidden-accessible" name="domain"  placeholder="type country" tabindex="-1" aria-hidden="true">
-
+                    <select id="edit-domain" class="form-select form-control required select2-hidden-accessible" name="domain" placeholder="type country" tabindex="-1" aria-hidden="true">
                         <option selected="selected" value="us" >United States</option>
                         <?php
                         $countries = get_bing_country();
                         foreach($countries as $cval => $cname){?>
-                            <option value="<?= $cval;?>"<?= $CI->session->userdata('domain') == $cval?' selected="selected"' : ''?> ><?= $cname; ?></option>
+                            <option value="<?= $cval;?>"<?= $CI->session->userdata('domain') == $cval? 'selected="selected"' : ''?> ><?= $cname; ?></option>
                         <?php }
 
                         ?>
@@ -134,19 +125,18 @@ $CI = &get_instance();
 				<button type="submit" class="search-button btn btn-common form-submit"></button>
 			</form>
 		</div>
-        <div class="form-action search-form" id="bing">
+		<div class="form-action search-form" id="bing">
             <form action="<?php echo base_url(); ?>keywords/bing/#bing" method="get">
-				<input type="text" class="search-box" name="keyword" value="<?php  if(!empty($CI->session->userdata('keyword'))){echo $CI->session->userdata('keyword');} ?>" placeholder="Type a keyword and press enter"/>
+				<input type="text" class="search-box" name="keyword" value="<?php if(isset($_GET['submit'])){echo $_GET['keyword']; }?>" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
-                    <select id="edit-domain" class="form-select form-control required select2-hidden-accessible" name="domain"  placeholder="type country" tabindex="-1" aria-hidden="true">
-
+                    <select id="edit-domain" class="form-select form-control required select2-hidden-accessible" name="domain" placeholder="type country" tabindex="-1" aria-hidden="true">
                         <option selected="selected" value="us" >United States</option>
                         <?php
                         $countries = get_bing_country();
                         foreach($countries as $cval => $cname){?>
-                            <option value="<?= $cval;?>"<?= $CI->session->userdata('domain') == $cval?' selected="selected"' : ''?> ><?= $cname; ?></option>
-                        <?php }
+                            <option value="<?= $cval;?>"<?= $CI->session->userdata('domain') == $cval? 'selected="selected"' : ''?> ><?= $cname; ?></option>
+                       <?php }
 
                         ?>
                     </select>
@@ -272,4 +262,56 @@ $CI = &get_instance();
 					</div>
 				</div>
 			</div>
+			<div class="col-xs-9 col-md-9">
+				<div class="keyword-result">
+					<h3>Keyword suggestion</h3>
 
+					<table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="google-tbl">
+						<tr>
+							<td width="40"><input type="checkbox" name="" ></td>
+							<td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
+							<td width="150">Search Volume <i class="fa fa-question" aria-hidden="true"></i></td>
+							<td width="130">CPC <i class="fa fa-question" aria-hidden="true"></i></td>
+							<td width="220">AdWords Competition <i class="fa fa-question" aria-hidden="true"></i></td>
+						</tr>
+                        <tr>
+                            <td width="40">Google</td>
+                        </tr>
+
+					</table>
+                    <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="youtube-tbl">
+                        <tr>
+                            <td width="40"><input type="checkbox" name="" ></td>
+                            <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
+                            <td width="150">Search Volume <i class="fa fa-question" aria-hidden="true"></i></td>
+                            <td width="130">CPC <i class="fa fa-question" aria-hidden="true"></i></td>
+                            <td width="220">AdWords Competition <i class="fa fa-question" aria-hidden="true"></i></td>
+                        </tr>
+                        <tr>
+                            <td width="40">youtube</td>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="bing-tbl">
+                        <tr>
+                            <td width="40"><input type="checkbox" name="" ></td>
+                            <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
+                        </tr>
+                        <?php
+/*
+                        if(isset($bing) && !empty($bing)){
+                            foreach($bing['result'] as $k => $val) { */?><!--
+                                <tr>
+                                    <td width="40"><input type="checkbox" name="" ></td>
+                                    <td width="290"><?php /*echo $val; */?></td>
+
+                                </tr>
+                            <?php /*} */?>
+                        --><?php /*} */?>
+                    </table>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+</body>
+</html>

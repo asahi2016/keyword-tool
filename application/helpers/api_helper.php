@@ -130,3 +130,66 @@ function getProvider(){
 
         return $uri;
 }
+
+function get_bing_country(){
+
+    $country = array(
+        "ar" => 'Argentina',
+        "au" => 'Australia',
+        "at" => 'Austria (Österreich)',
+        "be" => 'Belgium (België)',
+        "br" => 'Brazil (Brasil)',
+        "ca" => 'Canada',
+        "fr" => 'France',
+        "de" => 'Germany (Deutschland)',
+        "hk" => 'Hong Kong (香港)',
+        "in" => 'India',
+        "id" => 'Indonesia',
+        "it" => 'Italy (Italia)' ,
+        "jp" => 'Japan (日本)',
+        "kr" => 'Korea (한국)',
+        "my" => 'Malaysia',
+        "mx" => 'Mexico (México)'  ,
+        "nl" => 'Netherlands (Nederland)',
+        "nz" => 'New Zealand',
+        "no" => 'Norway (Norge)',
+        "cn" => 'Peoples Republic of China',
+        "pl" => 'Poland (Polska)' ,
+        "ph" => 'Republic of the Philippines',
+        "ru" => 'Russia (Россия)',
+        "sa" => 'Saudi Arabia (المملكة العربية السعودية)',
+        "za" => 'South Africa (Suid-Afrika)',
+        "es" => 'Spain (España)',
+        "se" => 'Sweden (Sverige)',
+        "ch" => 'Switzerland (Schweiz)',
+        "tw" => 'Taiwan (中華民國)',
+        "tr" => 'Turkey (Türkiye)',
+        "gb" => 'United Kingdom'  ,
+
+    );
+
+    return $country;
+}
+
+function get_bing_language(){
+
+    $languages = array(
+        "ar"  =>  'Arabic (العربية)',
+        "zh"  =>  'Chinese (中国)',
+        "nl"  =>  'Dutch (Nederlands)',
+        "fr"  =>  'French (Français)',
+        "de"  =>  'German (Deutsch)',
+        "it"  =>  'Italian (Italiano)',
+        "ja"  =>  'Japanese (日本語)',
+        "ko"  =>  'Korean (한국어)',
+        "nb"  =>  'Norwegian (Bokmål)',
+        "pl"  =>  'Polish (Polski)',
+        "pt"  =>  'Portuguese (Português)',
+        "ru"  =>  'Russian (Русский)',
+        "es"  =>  'Spanish (Español)',
+        "sv"  =>  'Swedish (Svenska)',
+        "tr"  =>  'Turkish (Türk)',
+    );
+
+    return $languages;
+}

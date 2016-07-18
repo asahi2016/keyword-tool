@@ -19,7 +19,7 @@ class Main extends CI_Controller
             $keyword = $_GET['keyword'];
             
         }else{
-            $this->load->view('index/index');
+            $this->load->view('index');
         }
     }
 }

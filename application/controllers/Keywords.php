@@ -12,6 +12,7 @@ class Keywords extends CI_Controller
     public function __construct(){
         parent::__construct();
         $this->CI = &get_instance();
+
     }
 
     //Get Google Keywords
@@ -35,7 +36,7 @@ class Keywords extends CI_Controller
             $result = GetKeywordIdeas($user,$keyword);
         }else {
             $data['error'] =  "<p>Keyword cannot be empty. Please enter a keyword to search</p>";
-            $this->load->view('index/index',$data);
+            $this->load->view('index',$data);
         }
         if(isset($result)){
             $this->load->view('google/index',array('data' => $result));
@@ -59,6 +60,12 @@ class Keywords extends CI_Controller
         //Generate the suggested keywords
         if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
+            $domian = trim($_GET['domain']);
+            $keyword = trim($_GET['keyword']);
+            $language = trim($_GET['language']);
+            $this->session->set_userdata('keyword',$keyword);
+            $this->session->set_userdata('domain',$domian);
+            $this->session->set_userdata('language',$language);
 
             $result = array();
 
@@ -76,7 +83,7 @@ class Keywords extends CI_Controller
 
                 foreach ($keys as $k => $search) {
                     //pass the keyword to api call
-                    $response = $this->getApiResponse($search);
+                    $response = $this->getApiResponse($search,$domian,$language);
                     foreach ($response as $order => $res_search) {
                         array_push($search_results, $res_search); //pushing the multiple array into one
                     }
@@ -85,20 +92,23 @@ class Keywords extends CI_Controller
 
             //Remove the duplicate values in the keywords
             $result['bing']['result'] = array_values(array_unique($search_results));
+            $result['bing']['keyword'] = $keyword;
+            $result['bing']['count'] = count($result['bing']['result']);
+
         }else {
-            $data['error'] =  "<p>Keyword cannot be empty. Please enter a bing keyword to search</p>";
-            $this->load->view('index/index',$data);
+            $data['error'] =  "<p>Keyword cannot be empty. Please enter a keyword to search</p>";
+            $this->load->view('index',$data);
         }
             if(isset($result) && !empty($result)){
             $this->load->view('bing/index', $result);
         }
     }
 
-    public function getApiResponse($keyword){
+    public function getApiResponse($keyword,$domain,$language){
 
         $keyword = urlencode($keyword);
 
-        $api_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt=en-in';//API url
+        $api_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt='.$language.'-'.$domain;//API url
 
         $method = 'POST';
 
@@ -109,5 +119,6 @@ class Keywords extends CI_Controller
 
         return $response[1];
     }
+
 }
 ?>
