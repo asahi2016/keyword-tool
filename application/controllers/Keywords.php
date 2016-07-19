@@ -79,7 +79,7 @@ class Keywords extends CI_Controller
             foreach ($suggestions as $key => $val) {
 
                 //Adding the suggestions(letters and numbers) before and after the keyword
-                $keys = array('normal' => $_GET['keyword'], 'front' => $_GET['keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['keyword']);
+                $keys = array('normal' => $_GET['keyword'],'front' => $_GET['keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['keyword']);
 
                 foreach ($keys as $k => $search) {
                     //pass the keyword to api call
