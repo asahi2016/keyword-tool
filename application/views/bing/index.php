@@ -6,7 +6,7 @@ $CI = &get_instance();
             <div class="col-xs-9 col-md-9">
                 <div class="keyword-result">
                     <h3>Keyword suggestion</h3>
-                    <p> Search for "<?php echo $bing['keyword'];?>" found <?php echo $bing['count']; ?> unique keywords </p>
+                    <p> Search for "<?php echo $bing['keyword'];?>" found <b><?php echo $bing['count']; ?></b> unique keywords </p>
 
                     <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="bing-tbl">
                         <?php

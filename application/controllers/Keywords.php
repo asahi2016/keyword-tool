@@ -89,7 +89,6 @@ class Keywords extends CI_Controller
                     }
                 }
             }
-
             //Remove the duplicate values in the keywords
             $result['bing']['result'] = array_values(array_unique($search_results));
             $result['bing']['keyword'] = $keyword;
@@ -116,8 +115,9 @@ class Keywords extends CI_Controller
         $response = callAPI($method, $api_url, true);
 
         $response = json_decode($response);
+        $result = array_slice($response[1],0,10,true);
 
-        return $response[1];
+        return $result;
     }
 
 }
