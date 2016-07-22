@@ -22,6 +22,9 @@
             case "PUT":
                 curl_setopt($curl, CURLOPT_PUT, 1);
                 break;
+            case "GET":
+                curl_setopt($curl, CURLOPT_HTTPGET, 1);
+                break;
             default:
                 if ($data)
                     $url = sprintf("%s?%s", $url, http_build_query($data));

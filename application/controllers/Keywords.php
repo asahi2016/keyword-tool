@@ -12,9 +12,13 @@ class Keywords extends CI_Controller
     public function __construct(){
         parent::__construct();
         $this->CI = &get_instance();
-
     }
 
+    public function index(){
+
+        $this->load->helper('api');
+        $this->load->view('index');
+    }
     //Get Google Keywords
     public function google()
     {
@@ -44,12 +48,27 @@ class Keywords extends CI_Controller
 
     }
 
-    //Get Youtueb Keywords
+    //Get Youtube Keywords
     public function youtube()
     {
         $this->load->helper('api');
-        echo "Youtube";
+
+        if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
+
+            $keyword = trim($_GET['keyword']);
+            $method = 'GET';
+            $api_url = 'http://www.google.com/complete/search?output=search&client=firefox&q='.urlencode($keyword).'&hl=en&gl=in&ds=yt';
+            $response = callAPI($method,$api_url,true);
+
+            //$response = json_encode($response);
+            $response = json_decode($response);
+            //$result = array_slice($response[1],0,10,true);
+            print_pre($response,1);
+
+        }
+
     }
+//https://www.google.com/complete/search?output=search&client=chrome&q=r%20asahi%20tec&hl=en&gl=us&ds=yt&callback=jQuery110109255367833779659_1468930460942&_=1468930460979
 
     //Get Bing Keywords
     public function bing()
@@ -60,8 +79,8 @@ class Keywords extends CI_Controller
         //Generate the suggested keywords
         if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
-            $domian = trim($_GET['domain']);
             $keyword = trim($_GET['keyword']);
+            $domian = trim($_GET['domain']);
             $language = trim($_GET['language']);
             $this->session->set_userdata('keyword',$keyword);
             $this->session->set_userdata('domain',$domian);

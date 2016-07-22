@@ -97,7 +97,7 @@ $CI = &get_instance();
 		</div>
 		<div class="form-action search-form" id="youtube">
 			<form action="<?php echo base_url(); ?>keywords/youtube" method="get">
-				<input type="text" class="search-box" value="" placeholder="Type a keyword and press enter"/>
+				<input type="text" name="keyword" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
 					<span class="btn-select-value">Select an Item</span>

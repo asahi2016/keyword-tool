@@ -8,16 +8,19 @@ $CI = &get_instance();
                     <h3>Keyword suggestion</h3>
                     <p> Search for "<?php echo $bing['keyword'];?>" found <b><?php echo $bing['count']; ?></b> unique keywords </p>
 
+                    <input id="copy" type="button" value="Copy">
+                    <input id="copy_all" type="button" value="Copy All"/>
+
                     <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="bing-tbl">
                         <?php
                                 if(isset($bing['result']) && !empty($bing['result'])){ ?>
                                     <tr>
-                                         <td width="40"><input type="checkbox" name="" ></td>
+                                         <td width="40"><input type="checkbox" id="select_all" value="select"></td>
                                          <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
                                      </tr>
                                 <?php foreach($bing['result'] as $k => $val) { ?>
                                      <tr>
-                                        <td width="40"><input type="checkbox" name="" ></td>
+                                        <td width="40"><input type="checkbox" class="bing_checkbox" name="bing_checkbox" value="<?php echo $val; ?>" ></td>
                                         <td width="290"><?php echo $val; ?></td>
 
                                     </tr>
