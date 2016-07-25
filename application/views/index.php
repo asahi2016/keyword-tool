@@ -13,11 +13,14 @@ $CI = &get_instance();
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/selectbox.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/pagination.css" />
     <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/html5shiv.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/respond.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/selectbox.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/pagination/pagination.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/custom.js"></script>
 </head>
 <body>
@@ -96,11 +99,21 @@ $CI = &get_instance();
 			</form>
 		</div>
 		<div class="form-action search-form" id="youtube">
-			<form action="<?php echo base_url(); ?>keywords/youtube" method="get">
+			<form action="<?php echo base_url(); ?>keywords/youtube/#youtube" method="get">
 				<input type="text" name="keyword" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
-					<span class="btn-select-value">Select an Item</span>
+                    <select id="edit-domain" class="form-select form-control required select2-hidden-accessible" name="domain" placeholder="type country" tabindex="-1" aria-hidden="true">
+                        <option selected="selected" value="us" >United States</option>
+                        <?php
+                        $countries = get_bing_country();
+                        foreach($countries as $cval => $cname){?>
+                            <option value="<?= $cval;?>"<?= $CI->session->userdata('domain') == $cval? 'selected="selected"' : ''?> ><?= $cname; ?></option>
+                        <?php }
+
+                        ?>
+                    </select>
+					<!--<span class="btn-select-value">Select an Item</span>
 					<span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
 					<ul>
 						<li>--select--</li>
@@ -108,11 +121,20 @@ $CI = &get_instance();
 						<li class="selected">Indonesia</li>
 						<li>Iraq</li>
 						<li>Island</li>
-					</ul>
+					</ul>-->
 				</a>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
-					<span class="btn-select-value">Select an Item</span>
+                    <select id="edit-language" class="form-select form-control required select2-hidden-accessible" name="language" placeholder="type language" tabindex="-1" aria-hidden="true">
+                        <option selected="selected" value="en">English</option>
+                        <?php
+                        $languages = get_bing_language();
+                        foreach($languages as $lval => $lname){?>
+                            <option value="<?= $lval;?>"<?= $CI->session->userdata('language') == $lval?'selected="selected"' : ''?> ><?= $lname; ?></option>
+                        <?php }
+                        ?>
+                    </select>
+					<!--<span class="btn-select-value">Select an Item</span>
 					<span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
 					<ul>
 						<li>--select--</li>
@@ -120,7 +142,7 @@ $CI = &get_instance();
 						<li class="selected">Afrikaans</li>
 						<li>Albanian</li>
 						<li>google.ae (United Arab Emirates)</li>
-					</ul>
+					</ul>-->
 				</a>
 				<button type="submit" class="search-button btn btn-common form-submit"></button>
 			</form>

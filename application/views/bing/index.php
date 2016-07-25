@@ -11,6 +11,7 @@ $CI = &get_instance();
                     <input id="copy" type="button" value="Copy">
                     <input id="copy_all" type="button" value="Copy All"/>
 
+                    <div id="table-div-id" class="table-div-class">
                     <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="bing-tbl">
                         <?php
                                 if(isset($bing['result']) && !empty($bing['result'])){ ?>
@@ -20,7 +21,7 @@ $CI = &get_instance();
                                      </tr>
                                 <?php foreach($bing['result'] as $k => $val) { ?>
                                      <tr>
-                                        <td width="40"><input type="checkbox" class="bing_checkbox" name="bing_checkbox" value="<?php echo $val; ?>" ></td>
+                                        <td width="40"><input type="checkbox" class="checkbox-key" name="checkbox-key" value="<?php echo $val; ?>" ></td>
                                         <td width="290"><?php echo $val; ?></td>
 
                                     </tr>
@@ -32,6 +33,7 @@ $CI = &get_instance();
                                <?php } ?>
 
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

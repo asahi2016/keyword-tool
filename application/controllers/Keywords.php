@@ -56,15 +56,22 @@ class Keywords extends CI_Controller
         if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
             $keyword = trim($_GET['keyword']);
-            $method = 'GET';
-            $api_url = 'http://www.google.com/complete/search?output=search&client=firefox&q='.urlencode($keyword).'&hl=en&gl=in&ds=yt';
-            $response = callAPI($method,$api_url,true);
 
-            //$response = json_encode($response);
-            $response = json_decode($response);
-            //$result = array_slice($response[1],0,10,true);
-            print_pre($response,1);
+            //Getting all suggested keywords
+            $search_results = $this->getAllSuggestedKeywords();
 
+            //Remove the duplicate values in the keywords
+            $result['youtube']['result'] = array_values(array_unique($search_results));
+            $result['youtube']['keyword'] = $keyword;
+            $result['youtube']['count'] = count($result['youtube']['result']);
+
+        }else{
+            $data['error'] =  "<p>Keyword cannot be empty. Please enter a keyword to search</p>";
+            $this->load->view('index',$data);
+        }
+
+        if(isset($result) && !empty($result)){
+        $this->load->view('youtube/index', $result);
         }
 
     }
@@ -80,34 +87,11 @@ class Keywords extends CI_Controller
         if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
             $keyword = trim($_GET['keyword']);
-            $domian = trim($_GET['domain']);
-            $language = trim($_GET['language']);
-            $this->session->set_userdata('keyword',$keyword);
-            $this->session->set_userdata('domain',$domian);
-            $this->session->set_userdata('language',$language);
-
             $result = array();
 
-            $letters = range('a', 'z');
-            $numbers = range('0', '9');
+            //Getting all suggested keywords
+            $search_results = $this->getAllSuggestedKeywords();
 
-            //merge the letters and numbers
-            $suggestions = array_merge($letters, $numbers);
-
-            $search_results = array();
-            foreach ($suggestions as $key => $val) {
-
-                //Adding the suggestions(letters and numbers) before and after the keyword
-                $keys = array('normal' => $_GET['keyword'],'front' => $_GET['keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['keyword']);
-
-                foreach ($keys as $k => $search) {
-                    //pass the keyword to api call
-                    $response = $this->getApiResponse($search,$domian,$language);
-                    foreach ($response as $order => $res_search) {
-                        array_push($search_results, $res_search); //pushing the multiple array into one
-                    }
-                }
-            }
             //Remove the duplicate values in the keywords
             $result['bing']['result'] = array_values(array_unique($search_results));
             $result['bing']['keyword'] = $keyword;
@@ -126,17 +110,59 @@ class Keywords extends CI_Controller
 
         $keyword = urlencode($keyword);
 
-        $api_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt='.$language.'-'.$domain;//API url
+        $CI =& get_instance();
+        $uri =  $CI->uri->segment(2);
+        if($uri == 'bing'){
+            $method = 'POST';
+            $api_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt='.$language.'-'.$domain;//API url
+            $response = callAPI($method, $api_url, true);
 
-        $method = 'POST';
-
-        //API call to get the keywords
-        $response = callAPI($method, $api_url, true);
+        }
+        else {
+            $method = 'GET';
+            $api_url = 'http://www.google.com/complete/search?output=search&client=firefox&q=' . $keyword . '&hl='.$language.'&gl='.$domain.'&ds=yt';
+            $response = callAPI($method, $api_url, true);
+        }
 
         $response = json_decode($response);
-        $result = array_slice($response[1],0,10,true);
-
+        $result = array_slice($response[1], 0, 10, true);
         return $result;
+    }
+
+    public function getAllSuggestedKeywords(){
+
+
+        $keyword = trim($_GET['keyword']);
+        $domian = trim($_GET['domain']);
+        $language = trim($_GET['language']);
+        $this->session->set_userdata('keyword',$keyword);
+        $this->session->set_userdata('domain',$domian);
+        $this->session->set_userdata('language',$language);
+
+
+        $letters = range('a', 'z');
+        $numbers = range('0', '9');
+
+        //merge the letters and numbers
+        $suggestions = array_merge($letters, $numbers);
+
+        $search_results = array();
+        foreach ($suggestions as $key => $val) {
+
+            //Adding the suggestions(letters and numbers) before and after the keyword
+            $keys = array('normal' => $_GET['keyword'],'front' => $_GET['keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['keyword']);
+
+            foreach ($keys as $k => $search) {
+                //pass the keyword to api call
+                $response = $this->getApiResponse($search,$domian,$language);
+                foreach ($response as $order => $res_search) {
+                    array_push($search_results, $res_search); //pushing the multiple array into one
+                }
+
+            }
+        }
+
+        return $search_results;
     }
 
 }

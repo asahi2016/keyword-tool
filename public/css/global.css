@@ -116,6 +116,7 @@ body {font:normal 12px/18px Tahoma; color:#534f4f}
 .btn-link.btn-common:focus,.btn-link.btn-common:hover{
 	color:#660cd1;
 }
+.keyword-result{position:relative;float:left;padding:0 0 60px 0;}
 .keyword-result h3{
 	margin:0px 0 20px;
 }
