@@ -103,10 +103,10 @@ $CI = &get_instance();
 				<input type="text" name="keyword" class="search-box" value="" placeholder="Type a keyword and press enter"/>
 				<a class="btn btn-primary btn-select btn-select-light">
 					<input type="hidden" class="btn-select-input" id="" name="" value="" />
-                    <select id="edit-domain" class="form-select form-control required select2-hidden-accessible" name="domain" placeholder="type country" tabindex="-1" aria-hidden="true">
+                    <select id="edit-domain" class="form-select form-control required select2-hidden-accessible"  name="domain" placeholder="type country" tabindex="-1" aria-hidden="true">
                         <option selected="selected" value="us" >United States</option>
                         <?php
-                        $countries = get_bing_country();
+                        $countries = get_youtube_country();
                         foreach($countries as $cval => $cname){?>
                             <option value="<?= $cval;?>"<?= $CI->session->userdata('domain') == $cval? 'selected="selected"' : ''?> ><?= $cname; ?></option>
                         <?php }
@@ -128,7 +128,7 @@ $CI = &get_instance();
                     <select id="edit-language" class="form-select form-control required select2-hidden-accessible" name="language" placeholder="type language" tabindex="-1" aria-hidden="true">
                         <option selected="selected" value="en">English</option>
                         <?php
-                        $languages = get_bing_language();
+                        $languages = get_youtube_languages();
                         foreach($languages as $lval => $lname){?>
                             <option value="<?= $lval;?>"<?= $CI->session->userdata('language') == $lval?'selected="selected"' : ''?> ><?= $lname; ?></option>
                         <?php }

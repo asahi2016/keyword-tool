@@ -120,7 +120,7 @@ class Keywords extends CI_Controller
         }
         else {
             $method = 'GET';
-            $api_url = 'http://www.google.com/complete/search?output=search&client=firefox&q=' . $keyword . '&hl='.$language.'&gl='.$domain.'&ds=yt';
+            $api_url = 'http://www.google.com/complete/search?output=search&client=chrome&q=' . $keyword . '&hl='.$language.'&gl='.$domain.'&ds=yt';
             $response = callAPI($method, $api_url, true);
         }
 
@@ -150,7 +150,7 @@ class Keywords extends CI_Controller
         foreach ($suggestions as $key => $val) {
 
             //Adding the suggestions(letters and numbers) before and after the keyword
-            $keys = array('normal' => $_GET['keyword'],'front' => $_GET['keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['keyword']);
+            $keys = array('normal' => $_GET['keyword'],'space-front' => ' '. $_GET['keyword'],'space-back' => $_GET['keyword'].' ','front' => $_GET['keyword'] . ' ' . $val, 'back' => $val . ' ' . $_GET['keyword']);
 
             foreach ($keys as $k => $search) {
                 //pass the keyword to api call
