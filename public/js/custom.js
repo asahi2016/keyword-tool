@@ -68,7 +68,7 @@ $(document).ready(function () {
 
     $('#table-div-id').tablePaginate({navigateType:'navigator',recordPerPage:200});
 
-    $(document).on('.pagination-btn','click',function(){
+    $('.pagination-btn').click(function(){
         $("html, body").animate({ scrollTop: 0 });
     });
 
