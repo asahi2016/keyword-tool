@@ -67,11 +67,11 @@ $(document).ready(function () {
 
 
     $('#table-div-id').tablePaginate({navigateType:'navigator',recordPerPage:200});
-
-    $('.pagination-btn').click(function(){
-        $("html, body").animate({ scrollTop: 0 });
+    $('.pagination-btn').live('click', function(){
+        $('.pagination-btn').each(function(){
+            $("html, body").animate({ scrollTop: 0 });
+        });
     });
-
    $('.social-link li a').click(function(){
        $('.search-form').hide();
        $('.social-link li a').removeClass('active');
