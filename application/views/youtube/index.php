@@ -11,27 +11,35 @@ $CI = &get_instance();
         <input id="copy" type="button" value="Copy">
         <input id="copy_all" type="button" value="Copy All"/>
 
-        <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="youtube-tbl">
-            <?php
-            if(isset($youtube['result']) && !empty($youtube['result'])){ ?>
-                <tr>
-                    <td width="40"><input type="checkbox" id="select_all" value="select"></td>
-                    <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
-                </tr>
-                <?php foreach($youtube['result'] as $val) { ?>
+        <div id="table-div-id" class="table-div-class">
+            <table cellpadding="0" cellspacing="0" class="tbl_result search-form" id="youtube-tbl">
+                <?php
+                if(isset($youtube['result']) && !empty($youtube['result'])){ ?>
+                    <thead>
                     <tr>
-                        <td width="40"><input type="checkbox" class="checkbox-key" name="checkbox-key" value="<?php echo $val; ?>" ></td>
-                        <td width="290"><?php echo $val; ?></td>
-
+                        <td width="40"><input type="checkbox" id="select_all" value="select"></td>
+                        <td width="290">Keywords <i class="fa fa-question" aria-hidden="true"></i></td>
                     </tr>
-                <?php }}else{?>
-                <div class="bing-no-keyword">
-                    <h3>Unfortunately we could not find any keyword suggestions for your query. Please try searching for another term.</h3>
-                </div>
+                    </thead>
+                    <tbody>
+                    <?php foreach($youtube['result'] as $k => $val) { ?>
 
-            <?php } ?>
+                        <tr>
+                            <td width="40"><input type="checkbox" class="checkbox-key" name="checkbox-key" value="<?php echo $val; ?>" ></td>
+                            <td width="290"><?php echo $val; ?></td>
 
-        </table>
+                        </tr>
+
+                    <?php }}else{?>
+                    </tbody>
+                    <div class="bing-no-keyword">
+                        <h3>Unfortunately we could not find any keyword suggestions for your query. Please try searching for another term.</h3>
+                    </div>
+
+                <?php } ?>
+
+            </table>
+        </div>
     </div>
 </div>
 </div>
