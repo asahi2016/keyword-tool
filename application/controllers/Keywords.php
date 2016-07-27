@@ -51,12 +51,20 @@ class Keywords extends CI_Controller
     //Get Youtube Keywords
     public function youtube()
     {
+        $this->load->library('google');
         $this->load->helper('api');
 
         if(isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 
             $keyword = trim($_GET['keyword']);
 
+            $oauth['client_id'] = $this->config->item('client_id');
+            $oauth['client_secret'] = $this->config->item('client_secret');
+            $oauth['refresh_token'] = $this->config->item('refresh_token');
+            $user = new AdWordsUser(null,'Cm6HKYVm7uZ-hlqOF0RnMA','Asahi Technologies','131-752-3145',APPPATH.'settings.ini',$oauth);
+
+            $results = GetKeywordIdeas($user,$keyword);
+            //print_pre($results,1);
             //Getting all suggested keywords
             $search_results = $this->getAllSuggestedKeywords();
 
@@ -75,7 +83,6 @@ class Keywords extends CI_Controller
         }
 
     }
-//https://www.google.com/complete/search?output=search&client=chrome&q=r%20asahi%20tec&hl=en&gl=us&ds=yt&callback=jQuery110109255367833779659_1468930460942&_=1468930460979
 
     //Get Bing Keywords
     public function bing()
@@ -109,12 +116,13 @@ class Keywords extends CI_Controller
     public function getApiResponse($keyword,$domain,$language){
 
         $keyword = urlencode($keyword);
+        $result =array();
 
         $CI =& get_instance();
         $uri =  $CI->uri->segment(2);
         if($uri == 'bing'){
             $method = 'POST';
-            $api_url = 'http://api.bing.com/osjson.aspx?query=' . $keyword . '&mkt='.$language.'-'.$domain;//API url
+            $api_url = 'http://api.bing.com/osjson.aspx?query='.$keyword.'&mkt='.$language.'-'.$domain;//API url
             $response = callAPI($method, $api_url, true);
 
         }
@@ -125,7 +133,10 @@ class Keywords extends CI_Controller
         }
 
         $response = json_decode($response);
+        if(isset($response[1]) && !empty($response[1]) ){
         $result = array_slice($response[1], 0, 10, true);
+
+        }
         return $result;
     }
 
@@ -133,10 +144,10 @@ class Keywords extends CI_Controller
 
 
         $keyword = trim($_GET['keyword']);
-        $domian = trim($_GET['domain']);
+        $domain = trim($_GET['domain']);
         $language = trim($_GET['language']);
         $this->session->set_userdata('keyword',$keyword);
-        $this->session->set_userdata('domain',$domian);
+        $this->session->set_userdata('domain',$domain);
         $this->session->set_userdata('language',$language);
 
 
@@ -154,11 +165,16 @@ class Keywords extends CI_Controller
 
             foreach ($keys as $k => $search) {
                 //pass the keyword to api call
-                $response = $this->getApiResponse($search,$domian,$language);
+                $response = $this->getApiResponse($search,$domain,$language);
                 foreach ($response as $order => $res_search) {
-                    array_push($search_results, $res_search); //pushing the multiple array into one
-                }
+                    $removeurls = preg_match('/(http(s)?:\/\/)(www\.)?(.)*[\.](.)*$/i', $res_search);
+                    if($removeurls == 1){
+                        unset($res_search);
+                    }else{
+                        array_push($search_results, $res_search);//pushing the multiple array into one
+                    }
 
+                }
             }
         }
 
